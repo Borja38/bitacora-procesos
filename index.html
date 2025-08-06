@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Levantamiento de Procesos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>📋 Bitácora de Levantamiento de Procesos</h1>
+            <p>Sistema de gestión y visualización de reuniones de análisis</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <h2>Cargar Nueva Reunión</h2>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                <p style="font-size: 14px; color: var(--text-light); margin-top: 10px;">
+                    Formatos aceptados: .txt, .md
+                </p>
+            </div>
+            <input type="file" id="fileInput" accept=".txt,.md" style="display: none;">
+            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                Seleccionar Archivo
+            </button>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary" id="statsSummary">
+            <div class="stat-card">
+                <div class="stat-value" id="totalMeetings">0</div>
+                <div class="stat-label">Total Reuniones</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalProcesses">0</div>
+                <div class="stat-label">Procesos Identificados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalSystems">0</div>
+                <div class="stat-label">Sistemas Documentados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalFindings">0</div>
+                <div class="stat-label">Hallazgos Importantes</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="searchInput">Buscar</label>
+                <input type="text" id="searchInput" placeholder="Buscar en reuniones...">
+            </div>
+            <div class="filter-group">
+                <label for="departmentFilter">Departamento</label>
+                <select id="departmentFilter">
+                    <option value="">Todos los departamentos</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="dateFilter">Fecha</label>
+                <input type="date" id="dateFilter">
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline" id="timeline">
+            <!-- Los items se agregarán dinámicamente aquí -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="meetingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Detalles de la Reunión</h2>
+                <span class="close" onclick="app.closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- El contenido se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notifications"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
